@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MyBarcode</string>
+    <string-array name="format_array">
+        <item>CODE 128</item>
+        <item>QR CODE</item>
+    </string-array>
+</resources>
