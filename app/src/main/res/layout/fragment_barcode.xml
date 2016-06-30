@@ -7,47 +7,29 @@
         android:id="@+id/barcode_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <RelativeLayout
-            android:id="@+id/barcode1d_layout"
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/barcode1d_height"
-                android:id="@+id/barcode1d_image"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/barcode1d_margin_top" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="14dp"
-                android:gravity="center"
-                android:id="@+id/barcode1d_number"
-                android:layout_below="@+id/barcode1d_image"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="2dp" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/barcode2d_layout"
+            android:layout_height="@dimen/barcode1d_height"
+            android:id="@+id/barcode1d_image"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/barcode1d_margin_top" />
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/barcode2d_height"
-                android:id="@+id/barcode2d_image"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/barcode2d_margin_top" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="14dp"
-                android:gravity="center"
-                android:id="@+id/barcode2d_number"
-                android:layout_below="@+id/barcode2d_image"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="2dp" />
-        </RelativeLayout>
+            android:layout_height="@dimen/barcode2d_height"
+            android:id="@+id/barcode2d_image"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/barcode2d_margin_top" />
     </FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="14dp"
+        android:gravity="center"
+        android:id="@+id/barcode_number"
+        android:layout_below="@+id/barcode_frame"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"

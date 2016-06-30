@@ -43,8 +43,8 @@ public class BarcodeFragment extends DialogFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final RelativeLayout layout1d = (RelativeLayout)view.findViewById(R.id.barcode1d_layout);
-        final RelativeLayout layout2d = (RelativeLayout)view.findViewById(R.id.barcode2d_layout);
+        ImageView barcode1dImage = null;
+        ImageView barcode2dImage = null;
         ImageView barcodeImage = null;
         TextView barcodeNumber = null;
         int width = 0;
@@ -54,19 +54,23 @@ public class BarcodeFragment extends DialogFragment {
         BarcodeFormat format = (BarcodeFormat)args.getSerializable("format");
         switch (format) {
             case CODE_128:
-                layout1d.setVisibility(View.VISIBLE);
-                layout2d.setVisibility(View.GONE);
-                barcodeImage = (ImageView)view.findViewById(R.id.barcode1d_image);
-                barcodeNumber = (TextView)view.findViewById(R.id.barcode1d_number);
+                barcode1dImage = (ImageView)view.findViewById(R.id.barcode1d_image);
+                barcode1dImage.setVisibility(View.VISIBLE);
+                barcodeImage = barcode1dImage;
+                if (barcode2dImage != null)
+                    barcode2dImage.setVisibility(View.GONE);
+                barcodeNumber = (TextView)view.findViewById(R.id.barcode_number);
                 width = getResources().getDimensionPixelSize(R.dimen.barcode1d_width);
                 height = getResources().getDimensionPixelSize(R.dimen.barcode1d_height);
                 format = BarcodeFormat.CODE_128;
                 break;
             case QR_CODE:
-                layout1d.setVisibility(View.GONE);
-                layout2d.setVisibility(View.VISIBLE);
-                barcodeImage = (ImageView)view.findViewById(R.id.barcode2d_image);
-                barcodeNumber = (TextView)view.findViewById(R.id.barcode2d_number);
+                barcode2dImage = (ImageView)view.findViewById(R.id.barcode2d_image);
+                barcode2dImage.setVisibility(View.VISIBLE);
+                barcodeImage = barcode2dImage;
+                if (barcode1dImage != null)
+                    barcode1dImage.setVisibility(View.GONE);
+                barcodeNumber = (TextView)view.findViewById(R.id.barcode_number);
                 width = getResources().getDimensionPixelSize(R.dimen.barcode2d_width);
                 height = getResources().getDimensionPixelSize(R.dimen.barcode2d_height);
                 format = BarcodeFormat.QR_CODE;
