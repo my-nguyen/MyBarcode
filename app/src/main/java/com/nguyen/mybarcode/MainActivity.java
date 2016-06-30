@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String text = textInput.getText().toString();
+                if (text == null || text.isEmpty())
+                    return;
                 BarcodeFragment fragment = BarcodeFragment.newInstance(text, mFormat);
                 FragmentManager manager = getSupportFragmentManager();
                 fragment.show(manager, "BarcodeFragment");
