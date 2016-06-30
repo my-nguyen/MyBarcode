@@ -47,12 +47,12 @@ public class BarcodeFragment extends DialogFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ImageView barcodeImage = (ImageView)view.findViewById(R.id.barcode_image);
-        TextView barcodeNumber = (TextView)view.findViewById(R.id.barcode_number);
+
         int width = 0;
         int height = 0;
         int top = 0;
         int bottom = 0;
+        // extract arguments from Bundle
         Bundle args = getArguments();
         String text = args.getString("text");
         BarcodeFormat format = (BarcodeFormat)args.getSerializable("format");
@@ -70,23 +70,28 @@ public class BarcodeFragment extends DialogFragment {
                 bottom = getResources().getDimensionPixelSize(R.dimen.barcode2d_margin_bottom);
                 break;
         }
+        // for barcode image: adjust the width and height, set top and bottom margins, and center
+        // it horizontally
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height);
         params.setMargins(0, top, 0, bottom);
         params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        ImageView barcodeImage = (ImageView)view.findViewById(R.id.barcode_image);
         barcodeImage.setLayoutParams(params);
-        // barcodeImage.requestLayout();
-        // barcodeImage.getLayoutParams().width = width;
-        // barcodeImage.getLayoutParams().height = height;
         try {
+            // encode the text into a bitmap
             Bitmap bitmap = encodeAsBitmap(text, format, width, height);
+            // display bitmap within ImageView
             barcodeImage.setImageBitmap(bitmap);
         } catch (WriterException e) {
             e.printStackTrace();
         }
+        // display the unencoded text
+        TextView barcodeNumber = (TextView)view.findViewById(R.id.barcode_number);
         barcodeNumber.setText(text);
     }
 
     Bitmap encodeAsBitmap(String str, BarcodeFormat format, int width, int height) throws WriterException {
+        // hints to remove margin of QR code from bitmap
         Map<EncodeHintType, Object> hints = new HashMap<>();
         hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
         hints.put(EncodeHintType.MARGIN, 0);

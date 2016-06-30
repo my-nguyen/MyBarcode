@@ -20,9 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final EditText textInput = (EditText)findViewById(R.id.text_input);
         Spinner formatSpinner = (Spinner)findViewById(R.id.format_spinner);
-        Button generateQR = (Button)findViewById(R.id.generate_qr);
 
         ArrayAdapter<CharSequence> formatAdapter = ArrayAdapter.createFromResource(this,
                 R.array.format_array, android.R.layout.simple_spinner_item);
@@ -46,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final EditText textInput = (EditText)findViewById(R.id.text_input);
+        Button generateQR = (Button)findViewById(R.id.generate_qr);
         generateQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
