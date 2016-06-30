@@ -13,9 +13,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by my.nguyen on 6/30/16.
@@ -78,8 +82,11 @@ public class BarcodeFragment extends DialogFragment {
     }
 
     Bitmap encodeAsBitmap(String str, BarcodeFormat format, int width, int height) throws WriterException {
+        Map<EncodeHintType, Object> hints = new HashMap<>();
+        hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+        hints.put(EncodeHintType.MARGIN, 0);
         MultiFormatWriter writer = new MultiFormatWriter();
-        BitMatrix result = writer.encode(str, format, width, height, null);
+        BitMatrix result = writer.encode(str, format, width, height, hints);
         int w = result.getWidth();
         int h = result.getHeight();
         int[] pixels = new int[w * h];
