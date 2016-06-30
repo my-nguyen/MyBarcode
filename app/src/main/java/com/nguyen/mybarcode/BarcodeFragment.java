@@ -51,6 +51,8 @@ public class BarcodeFragment extends DialogFragment {
         TextView barcodeNumber = (TextView)view.findViewById(R.id.barcode_number);
         int width = 0;
         int height = 0;
+        int top = 0;
+        int bottom = 0;
         Bundle args = getArguments();
         String text = args.getString("text");
         BarcodeFormat format = (BarcodeFormat)args.getSerializable("format");
@@ -58,23 +60,26 @@ public class BarcodeFragment extends DialogFragment {
             case CODE_128:
                 width = getResources().getDimensionPixelSize(R.dimen.barcode1d_width);
                 height = getResources().getDimensionPixelSize(R.dimen.barcode1d_height);
+                top = getResources().getDimensionPixelSize(R.dimen.barcode1d_margin_top);
+                bottom = getResources().getDimensionPixelSize(R.dimen.barcode1d_margin_bottom);
                 break;
             case QR_CODE:
                 width = getResources().getDimensionPixelSize(R.dimen.barcode2d_width);
                 height = getResources().getDimensionPixelSize(R.dimen.barcode2d_height);
+                top = getResources().getDimensionPixelSize(R.dimen.barcode2d_margin_top);
+                bottom = getResources().getDimensionPixelSize(R.dimen.barcode2d_margin_bottom);
                 break;
         }
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height);
+        params.setMargins(0, top, 0, bottom);
+        params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        barcodeImage.setLayoutParams(params);
         // barcodeImage.requestLayout();
-        barcodeImage.getLayoutParams().width = width;
-        barcodeImage.getLayoutParams().height = height;
+        // barcodeImage.getLayoutParams().width = width;
+        // barcodeImage.getLayoutParams().height = height;
         try {
             Bitmap bitmap = encodeAsBitmap(text, format, width, height);
             barcodeImage.setImageBitmap(bitmap);
-            /*
-            // hide the soft keyboard
-            InputMethodManager inputMethodManager = (InputMethodManager)getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-            inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
-            */
         } catch (WriterException e) {
             e.printStackTrace();
         }

@@ -16,8 +16,7 @@
         android:gravity="center"
         android:id="@+id/barcode_number"
         android:layout_below="@+id/barcode_image"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="2dp" />
+        android:layout_centerHorizontal="true"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"

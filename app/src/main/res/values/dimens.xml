@@ -5,7 +5,9 @@
     <dimen name="barcode1d_width">286dp</dimen>
     <dimen name="barcode1d_height">63dp</dimen>
     <dimen name="barcode1d_margin_top">48dp</dimen>
+    <dimen name="barcode1d_margin_bottom">2dp</dimen>
     <dimen name="barcode2d_width">117dp</dimen>
     <dimen name="barcode2d_height">117dp</dimen>
     <dimen name="barcode2d_margin_top">20dp</dimen>
+    <dimen name="barcode2d_margin_bottom">2dp</dimen>
 </resources>
